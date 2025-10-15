@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 4.0)
+
+project(tobin C CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+file(GLOB SOURCE_FILES "${SOURCE_DIR}/*.cpp")
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+
+target_link_libraries(${PROJECT_NAME}
+${CMAKE_CURRENT_SOURCE_DIR}/headers
+)

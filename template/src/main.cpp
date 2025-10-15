@@ -26,9 +26,6 @@ int main(int argc, char *argv[]) {
   CMakeLists << "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" << std::endl
              << std::endl;
 
- CMakeLists << "cmake_policy(set cmp0072 new)" << std::endl << std::endl;
-
-
   CMakeLists << "set(SOURCE_DIR \"${CMAKE_CURRENT_SOURCE_DIR}/src\")"
              << std::endl;
   CMakeLists << "file(GLOB SOURCE_FILES \"${SOURCE_DIR}/*.cpp\")" << std::endl
@@ -36,16 +33,10 @@ int main(int argc, char *argv[]) {
   CMakeLists << "add_executable(${PROJECT_NAME} ${SOURCE_FILES})" << std::endl
              << std::endl;
 
-
-  CMakeLists << "target_link_libraries(${PROJECT_NAME}" << std::endl
-             << "${CMAKE_CURRENT_SOURCE_DIR}/include" << std::endl
-             << ")" << std::endl;
+  CMakeLists << "target_include_directories(" << projectName
+             << " PUBLIC \"${CMAKE_CURRENT_SOURCE_DIR}/include\")";
 
   CMakeLists.close();
-  system("mkdir include");
-  system("cp ~/glad/include/glad/glad.h include/");
-  system("cp ~/glad/include/KHR/khrplatform.h include/");
-  system("cp ~/glad/src/glad.c include/");
   system("mkdir build");
   system("mkdir src");
   system("mkdir headers");

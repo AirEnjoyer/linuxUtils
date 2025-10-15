@@ -16,7 +16,8 @@ int main(int argc, char *argv[]) {
   }
   std::ofstream CMakeLists("CMakeLists.txt");
 
-  CMakeLists << "cmake_minimum_required(VERSION 4.0)" << std::endl << std::endl;
+  CMakeLists << "cmake_minimum_required(VERSION 4.0)" << std::endl;
+  CMakeLists << "cmake_policy(set cmp0072 new)" << std::endl << std::endl;
 
   CMakeLists << "project(" << projectName << " C CXX)" << std::endl
              << std::endl;
@@ -25,8 +26,6 @@ int main(int argc, char *argv[]) {
   CMakeLists << "set(CMAKE_CXX_STANDARD_REQUIRED ON)" << std::endl;
   CMakeLists << "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" << std::endl
              << std::endl;
-
-  CMakeLists << "cmake_policy(set cmp0072 new)" << std::endl << std::endl;
 
   CMakeLists << "find_package(SDL2 REQUIRED)" << std::endl
              << "find_package(OpenGL REQUIRED)" << std::endl
