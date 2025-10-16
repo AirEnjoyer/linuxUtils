@@ -1,18 +1,14 @@
-
-cmake_minimum_required(VERSION 3.16..3.7)
-
-set(CMAKE_CXX_STANDARD 20)
-
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+cmake_minimum_required(VERSION 4.0)
 
 project(sdltemplate CXX)
 
-set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 file(GLOB SOURCE_FILES "${SOURCE_DIR}/*.cpp")
 
-add_executable(sdltemplate ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/headers")
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")

@@ -33,13 +33,13 @@ int main(int argc, char *argv[]) {
   CMakeLists << "add_executable(${PROJECT_NAME} ${SOURCE_FILES})" << std::endl
              << std::endl;
 
-  CMakeLists << "target_include_directories(" << projectName
-             << " PUBLIC \"${CMAKE_CURRENT_SOURCE_DIR}/include\")";
+  CMakeLists << "target_include_directories(${PROJECT_NAME} PUBLIC "
+                "\"${CMAKE_CURRENT_SOURCE_DIR}/include\")";
 
   CMakeLists.close();
   system("mkdir build");
   system("mkdir src");
-  system("mkdir headers");
+  system("mkdir include");
 
   std::ofstream main("src/main.cpp");
   main << "#include <iostream>" << std::endl << std::endl;

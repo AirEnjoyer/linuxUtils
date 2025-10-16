@@ -1,3 +1,14 @@
-cmake_minimum_required(VERSION 3.25)
-project(txt2pdf CXX)
-add_executable(txt2pdf main.cpp)
+cmake_minimum_required(VERSION 4.0)
+
+project(txt2pdf C CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+file(GLOB SOURCE_FILES "${SOURCE_DIR}/*.cpp")
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
