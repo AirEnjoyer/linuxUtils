@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
   CMakeLists << "set(CMAKE_CXX_STANDARD_REQUIRED ON)" << std::endl;
   CMakeLists << "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)" << std::endl;
 
-  CMakeLists << "find_package(SDL2 REQUIRED)" << std::endl;
+  CMakeLists << "find_package(SDL3 REQUIRED)" << std::endl;
   CMakeLists << "find_package(OpenGL REQUIRED)" << std::endl;
 
   CMakeLists << "set(SOURCE_DIR \"${CMAKE_CURRENT_SOURCE_DIR}/src\")"
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
 
   CMakeLists << "target_include_directories(${PROJECT_NAME}" << std::endl;
   CMakeLists << "PRIVATE" << std::endl;
-  CMakeLists << "${SDL2_INCLUDE_DIRS}" << std::endl;
+  CMakeLists << "${SDL3_INCLUDE_DIRS}" << std::endl;
   CMakeLists << "glad/include" << std::endl;
   CMakeLists << "${CMAKE_CURRENT_SOURCE_DIR}/include" << std::endl;
   CMakeLists << ")" << std::endl;
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
   CMakeLists << "target_link_libraries(${PROJECT_NAME}" << std::endl
              << "PRIVATE" << std::endl
              << "glad" << std::endl
-             << "${SDL2_LIBRARIES}" << std::endl
+             << "${SDL3_LIBRARIES}" << std::endl
              << "OpenGL::GL" << std::endl
              << ")" << std::endl;
 
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
   std::system("mkdir headers");
 
   std::ofstream main("src/main.cpp");
-  main << "#include <SDL2/SDL.h>" << std::endl
+  main << "#include <SDL3/SDL.h>" << std::endl
        << "#include <glad/glad.h>" << std::endl;
   main << "#include <iostream>" << std::endl << std::endl;
   main << "int main() {" << std::endl
