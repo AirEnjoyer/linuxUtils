@@ -28,11 +28,7 @@ int main(int argc, char *argv[]) {
   CMakeLists << "find_package(SDL3 REQUIRED)" << std::endl;
   CMakeLists << "find_package(OpenGL REQUIRED)" << std::endl;
 
-  CMakeLists << "set(SOURCE_DIR \"${CMAKE_CURRENT_SOURCE_DIR}/src\")"
-             << std::endl;
-  CMakeLists << "file(GLOB SOURCE_FILES \"${SOURCE_DIR}/*.cpp\")" << std::endl;
-
-  CMakeLists << "add_executable(${PROJECT_NAME} ${SOURCE_FILES})" << std::endl;
+  CMakeLists << "add_executable(${PROJECT_NAME} src/main.cpp)" << std::endl;
 
   CMakeLists << "target_include_directories(${PROJECT_NAME}" << std::endl;
   CMakeLists << "PRIVATE" << std::endl;
@@ -50,14 +46,8 @@ int main(int argc, char *argv[]) {
   std::system("mkdir build");
   std::system("mkdir src");
   std::system("mkdir headers");
-
-  std::ofstream main("src/main.cpp");
-  main << "#include <SDL3/SDL.h>" << std::endl;
-  main << "#include <iostream>" << std::endl << std::endl;
-  main << "int main() {" << std::endl
-       << "return 0;" << std::endl
-       << "}" << std::endl;
-  main.close();
+  std::system("cp ~/src/main.cpp ./src/main.cpp");
+  std::system("cmake -S . -B build/");
 
   return 0;
 }
