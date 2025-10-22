@@ -32,40 +32,29 @@ int main(int argc, char *argv[]) {
              << std::endl;
   CMakeLists << "file(GLOB SOURCE_FILES \"${SOURCE_DIR}/*.cpp\")" << std::endl;
 
-  CMakeLists << "add_library(glad STATIC" << std::endl;
-  CMakeLists << "glad/src/glad.c" << std::endl;
-  CMakeLists << ")" << std::endl;
-  CMakeLists << "target_include_directories(glad PUBLIC glad/include)"
-             << std::endl;
-
   CMakeLists << "add_executable(${PROJECT_NAME} ${SOURCE_FILES})" << std::endl;
 
   CMakeLists << "target_include_directories(${PROJECT_NAME}" << std::endl;
   CMakeLists << "PRIVATE" << std::endl;
   CMakeLists << "${SDL3_INCLUDE_DIRS}" << std::endl;
-  CMakeLists << "glad/include" << std::endl;
   CMakeLists << "${CMAKE_CURRENT_SOURCE_DIR}/include" << std::endl;
   CMakeLists << ")" << std::endl;
 
   CMakeLists << "target_link_libraries(${PROJECT_NAME}" << std::endl
              << "PRIVATE" << std::endl
-             << "glad" << std::endl
-             << "${SDL3_LIBRARIES}" << std::endl
+             << "SDL3::SDL3" << std::endl
              << "OpenGL::GL" << std::endl
              << ")" << std::endl;
 
   CMakeLists.close();
-  std::system("cp -r ~/glad ./");
   std::system("mkdir build");
   std::system("mkdir src");
   std::system("mkdir headers");
 
   std::ofstream main("src/main.cpp");
-  main << "#include <SDL3/SDL.h>" << std::endl
-       << "#include <glad/glad.h>" << std::endl;
+  main << "#include <SDL3/SDL.h>" << std::endl;
   main << "#include <iostream>" << std::endl << std::endl;
   main << "int main() {" << std::endl
-       << "int x = 0;" << std::endl
        << "return 0;" << std::endl
        << "}" << std::endl;
   main.close();
