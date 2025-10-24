@@ -15,3 +15,5 @@ file(GLOB SOURCE_FILES "${SOURCE_DIR}/*.cpp")
 add_executable(mkfat ${SOURCE_FILES})
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/headers")
+
+install(TARGETS ${PROJECT_NAME} DESTINATION /usr/local/bin/)

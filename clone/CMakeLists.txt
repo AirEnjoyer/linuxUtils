@@ -12,3 +12,4 @@ file(GLOB SOURCE_FILES "${SOURCE_DIR}/*.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
+install(TARGETS ${PROJECT_NAME} DESTINATION /usr/local/bin/)
