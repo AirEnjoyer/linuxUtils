@@ -16,7 +16,8 @@ int main(int argc, char *argv[]) {
   }
   std::ofstream CMakeLists("CMakeLists.txt");
 
-  CMakeLists << "cmake_minimum_required(VERSION 4.0)" << std::endl << std::endl;
+  CMakeLists << "cmake_minimum_required(VERSION 3.25)" << std::endl
+             << std::endl;
 
   CMakeLists << "project(" << projectName << " C CXX)" << std::endl
              << std::endl;
