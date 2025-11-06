@@ -1,36 +1,34 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
-
-void getRepo(std::string &clone) {
-  std::cout << "Enter the author name and repo name (eg. sindresorhus/awesome)"
-            << std::endl;
-  std::string repo;
-  std::cin >> repo;
-  clone += repo;
-}
+#include <vector>
 
 int main(int argc, char *argv[]) {
-  std::string clone = "git clone --depth 1 --branch ";
-  // main --single-branch https://github.com/";
+  std::string cloneCommand = "git clone --depth 1 ";
   if (argc == 2) {
-    std::cout << "Using default branch main, add branch after repo to use a "
-                 "different one"
-              << std::endl;
-    clone += "main --single-branch https://github.com/";
-    clone += argv[1];
+    std::string arg2 = argv[1];
+    if (arg2 != "ssh" && arg2 != "https") {
+      std::cout << "Using https, to use ssh use \" clone ssh owner/repo.git\""
+                << std::endl;
+      cloneCommand += arg2;
+    } else if (arg2 == "https" | arg2 == "ssh") {
+      std::cerr << arg2 << " requires a repo \n";
+      return 1;
+    }
   } else if (argc == 3) {
-    clone += argv[2];
-    clone += " --single-branch https://github.com/";
-    clone += argv[1];
-  } else {
-    std::cout << "Usage: clone Author/repoName " << std::endl
-              << "Optionally, do Author/repoName branch to use a branch other "
-                 "than main"
-              << std::endl;
-    exit(1);
+    std::vector<std::string> args(argv, argv + argc);
+    if (args[1] == "ssh") {
+      cloneCommand += "git@github.com:";
+    } else if (args[1] == "https") {
+      cloneCommand += "https://github.com/";
+    }
+    cloneCommand += args[2];
+  } else if (argc == 1) {
+    std::cerr << "clone requires arguments. Usage: clone <method> (method can "
+                 "be ssh or https) owner/repo.git";
+    return 1;
   }
-  system(clone.c_str());
+  std::system(cloneCommand.c_str());
 
   return 0;
 }
