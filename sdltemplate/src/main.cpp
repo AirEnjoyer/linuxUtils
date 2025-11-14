@@ -116,7 +116,7 @@ int main(int argc, char *argv[]) {
     CMakeLists.close();
     std::system("mkdir build");
     std::system("mkdir headers");
-    std::system("cmake -S . -B build/ DCMAKE_EXPORT_COMPILE_COMMANDS=ON");
+    std::system("cmake -S . -B build/ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON");
 
     return 0;
 }
