@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
          << "}" << std::endl;
     main.close();
 
-    std::system("cmake -S . -B build DCMAKE_EXPORT_COMPILE_COMMANDS=ON")
+    std::system("cmake -S . -B build DCMAKE_EXPORT_COMPILE_COMMANDS=ON");
 
         return 0;
 }
