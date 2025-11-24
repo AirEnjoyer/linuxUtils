@@ -5,7 +5,7 @@
 void toBin(std::string path) {
     std::string toBin = "cp ";
     toBin += path;
-    toBin += " /usr/bin";
+    toBin += " /usr/local/bin";
     std::system(toBin.c_str());
 }
 
